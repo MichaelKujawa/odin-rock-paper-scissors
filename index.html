@@ -35,7 +35,20 @@
             return choice
         }
 
-        console.log(getHumanChoice());
+        let humanScore = 0;
+        let ComputerScore = 0;
+
+        function playRound(humanChoice, computerChoice) {
+            if(humanChoice === "Rock" && computerChoice === "Paper"){
+                computerScore += 1;
+            }else if (humanChoice === "Rock" && computerChoice === "Scissors"){
+                humanScore += 1;
+            }else if (humanChoice === "Paper" && computerChoice === "Rock"){
+                humanScore += 1;
+            }else if (humanChoice === "Paper" && computerChoice === "scissors"){
+                computerScore += 1;
+            }
+        }
     </script>
 </body>
 </html>
