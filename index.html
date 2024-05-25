@@ -8,6 +8,34 @@
 <body>
     <script>
         console.log("Hello World");
+
+        let getComputerChoice = function(){
+            let choice = Math.floor(Math.random() * 3);
+            if(choice === 1){
+                choice = "Rock";
+            }else if( choice === 2){
+                choice = "Paper";
+            }else{
+                choice = "Scissors";
+            }
+            return choice
+        }
+
+        let getHumanChoice = function(){
+            let choice = prompt("Rock, Paper, or Scissors?")
+            if(choice.toLowerCase() === "rock"){
+                choice = "Rock"
+            }else if(choice.toLowerCase() === "paper"){
+                choice = "Paper"
+            }else if(choice.toLowerCase() === "scissors"){
+                choice = "Scissors"
+            }else{
+                return alert("Reload the page and try typing again! Check your spelling.")
+            }
+            return choice
+        }
+
+        console.log(getHumanChoice());
     </script>
 </body>
 </html>
