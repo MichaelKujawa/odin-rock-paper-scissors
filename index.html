@@ -8,69 +8,50 @@
 <body>
     <script>
 
+        const options = ["rock", "paper", "scissors"];
+
         function getComputerChoice(){
-            let choice = Math.floor(Math.random() * 3);
-            if(choice === 1){
-                choice = "Rock";
-            }else if( choice === 2){
-                choice = "Paper";
-            }else{
-                choice = "Scissors";
-            }
+            let choice = options[(Math.floor(Math.random() * options.length))];
             return choice
         }
 
         function getHumanChoice(){
-            let choice = prompt("Rock, Paper, or Scissors?")
-            if(choice.toLowerCase() === "rock"){
-                choice = "Rock";
-            }else if(choice.toLowerCase() === "paper"){
-                choice = "Paper";
-            }else if(choice.toLowerCase() === "scissors"){
-                choice = "Scissors";
-            }else{
-                return alert("Reload the page and try typing again! Check your spelling.")
+            let validInput = false
+            while (validInput == false){
+                let choice = prompt("rock, paper, scissors")
+                if (choice === null){
+                    continue;
+                }
+                const choiceInLower = choice.toLowerCase();
+                if (options.includes(choiceInLower)){
+                    validInput = true;
+                    return choiceInLower;
+                }
             }
-            return choice
         }
 
-
-        const humanSelection = getHumanChoice();
-            
-        const computerSelection = getComputerChoice();
-
-
-
-        function playGame(){
-
-        let humanScore = 0;
-        let computerScore = 0;
+        humanScore = 0;
+        computerScore = 0;
 
         function playRound(humanChoice, computerChoice) {
-            if(humanChoice === "Rock" && computerChoice === "Paper"){
-                computerScore += 1;
-            }else if (humanChoice === "Rock" && computerChoice === "Scissors"){
-                humanScore += 1;
-            }else if (humanChoice === "Paper" && computerChoice === "Rock"){
-                humanScore += 1;
-            }else if (humanChoice === "Paper" && computerChoice === "scissors"){
-                computerScore += 1;
-            }else if (humanChoice === "Scissors" && computerChoice === "Rock"){
-                computerScore += 1;
-            }else if (humanChoice === "Scissors" && computerChoice === "Paper"){
-                humanScore += 1;
-            }else if (humanChoice === "Rock" && computerChoice === "Rock"){
-                console.log("Its a tie!")
-            }else if (humanChoice === "Paper" && computerChoice === "Paper"){
-                console.log("It's a tie!")
-            }else if (humanChoice === "Scissors" && computerChoice === "Scissors"){
-                console.log("It's a tie!")
+                if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper"){
+                    console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+                    humanScore ++
+                }
+                else if (humanChoice === computerChoice){
+                    console.log("It's a tie!");
+                }
+                else{
+                    console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+                    computerScore ++
+                }
             }
-        }
-        playRound(humanSelection,computerSelection);
-        console.log(`Human ${humanScore} - Computer ${computerScore}`)
 
-       playGame();
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice()
+
+        playRound();
+
     </script>
 </body>
 </html>
